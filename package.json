@@ -1,0 +1,25 @@
+{
+  "name": "yopass-cli",
+  "version": "0.0.1",
+  "description": "cli for yopass",
+  "main": "cli.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mustafacantekir/yopass-cli.git"
+  },
+  "keywords": ["cli","yopass"],
+  "license": "MIT",
+  "dependencies": {
+    "clipboardy": "^2.0.0",
+    "node-fetch": "^2.6.0",
+    "sjcl": "^1.0.8",
+    "yargs": "^13.2.4"
+  },
+  "bin": {
+    "yopass-cli": "./cli.js"
+  },
+  "homepage": "https://github.com/mustafacantekir/yopass-cli"
+}
