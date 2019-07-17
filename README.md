@@ -20,7 +20,7 @@ export YOPASS_API_URL="https://api.foo.net"
 export YOPASS_UI_URL="https://ui.foo.net"
 ```
 
-Encrypt your secret using `encrypt` command. You can specify secret message as argument or pass value from stdin.
+Encrypt your secret using `encrypt` command. You can specify secret message as an argument or pass value from stdin.
 
 ```
 yopass-cli encrypt secret
@@ -50,7 +50,7 @@ yopass-cli -h
 yopass-cli encrypt secret [options] 
 ```
 
-Options:
+#### Options
 
 ```
 Options:
@@ -61,7 +61,7 @@ Options:
   --preserve-clipboard, -p  Preserve clipboard        [boolean] [default: false]
 ```
 
-Examples
+#### Examples
 
 ```
 cat bar.txt | yopass-cli encrypt -e=w   Encrypt content of bar.txt, set expiration time to one week, copy one-click link to clipboard
