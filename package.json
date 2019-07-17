@@ -1,6 +1,6 @@
 {
   "name": "yopass-cli",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "cli for yopass",
   "main": "cli.js",
   "scripts": {
@@ -10,7 +10,10 @@
     "type": "git",
     "url": "https://github.com/mustafacantekir/yopass-cli.git"
   },
-  "keywords": ["cli","yopass"],
+  "keywords": [
+    "cli",
+    "yopass"
+  ],
   "license": "MIT",
   "dependencies": {
     "clipboardy": "^2.0.0",
