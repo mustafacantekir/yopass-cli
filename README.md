@@ -1,4 +1,6 @@
 # yopass-cli 
+[![npm version](https://badge.fury.io/js/yopass-cli.svg)](https://badge.fury.io/js/yopass-cli)
+
 Command line interface for [yopass](https://github.com/jhaals/yopass).
 
 ## Prerequisites
