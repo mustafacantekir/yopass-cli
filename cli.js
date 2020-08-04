@@ -5,4 +5,6 @@ require('yargs')
     .demandCommand()
     .help()
     .wrap(80)
+    .recommendCommands()
+    .strict()
     .argv

@@ -2,11 +2,12 @@ var fetch = require("node-fetch");
 var yopassUrlRetriever = require("../util/yopassUrlRetriever");
 
 module.exports = {
-    sendSecret: function (expirationTime, secret) {
+    sendSecret: function (expirationTime, secret, oneTime) {
         return fetch(yopassUrlRetriever.getYopassAPIURL() + "/secret", {
             body: JSON.stringify({
                 expiration: expirationTime,
-                secret: secret
+                message: secret,
+                one_time: oneTime
             }),
             method: 'POST'
         }).then(function (response) {

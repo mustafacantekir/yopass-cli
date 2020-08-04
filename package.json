@@ -1,6 +1,6 @@
 {
   "name": "yopass-cli",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "cli for yopass",
   "main": "cli.js",
   "scripts": {
@@ -18,7 +18,7 @@
   "dependencies": {
     "clipboardy": "^2.0.0",
     "node-fetch": "^2.6.0",
-    "sjcl": "^1.0.8",
+    "openpgp": "^4.10.7",
     "yargs": "^13.2.4"
   },
   "bin": {

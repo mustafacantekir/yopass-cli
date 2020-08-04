@@ -1,7 +1,7 @@
 var randomStringGenerator = require("../util/randomStringGenerator");
 var sender = require("../util/sender");
 var yopassUrlRetriever = require("../util/yopassUrlRetriever");
-var sjcl = require("sjcl");
+var openpgp = require("openpgp");
 var clipboardy = require('clipboardy');
 var fs = require("fs");
 
@@ -32,6 +32,13 @@ exports.builder = function (yargs) {
         default: false
     });
 
+    yargs.option('one-time', {
+        alias: 'o',
+        describe: 'Specify one-time download',
+        type: 'boolean',
+        default: true
+    });
+
     if (!process.stdin.isTTY) {
         yargs.argv._.push(fs.readFileSync(process.stdin.fd, "utf-8"));
     }
@@ -40,20 +47,24 @@ exports.builder = function (yargs) {
 exports.handler = function (argv) {
     var expirationTime = expiration[argv.e];
     var secret = argv.message;
+    var oneTime = argv.o;
     var decryptionKey = randomStringGenerator.generate();
 
-    var encryptedSecret = sjcl.encrypt(decryptionKey, secret).toString();
+    openpgp.encrypt({
+        message: openpgp.message.fromText(secret),
+        passwords: decryptionKey
+    }).then(function (encryptedSecret) {
+        sender.sendSecret(expirationTime, encryptedSecret.data, oneTime).then(function (value) {
+            var uuid = value.message;
+            var links = yopassUrlRetriever.getLinks(uuid, decryptionKey);
+            console.log("One Click Link: " + links.oneClick);
+            console.log("Short Link: " + links.short);
+            console.log("Decryption Key: " + decryptionKey);
 
-    sender.sendSecret(expirationTime, encryptedSecret).then(function (value) {
-        var uuid = value.message;
-        var links = yopassUrlRetriever.getLinks(uuid, decryptionKey);
-        console.log("One Click Link: " + links.oneClick);
-        console.log("Short Link: " + links.short);
-        console.log("Decryption Key: " + decryptionKey);
-
-        if (argv.p !== true) {
-            clipboardy.writeSync(links.oneClick);
-            console.log("One click link copied to clipboard.");
-        }
+            if (argv.p !== true) {
+                clipboardy.writeSync(links.oneClick);
+                console.log("One click link copied to clipboard.");
+            }
+        });
     });
 };

@@ -1,5 +1,5 @@
 var sender = require("../util/sender");
-var sjcl = require("sjcl");
+var openpgp = require("openpgp");
 
 exports.command = 'decrypt <uniqueIdentifier> <decryptionKey> [options]';
 exports.desc = 'Decrypt <uniqueIdentifier> with <decryptionKey>';
@@ -8,10 +8,16 @@ exports.handler = function (argv) {
     var decryptionKey = argv.decryptionKey;
 
     sender.getEncryptedMessage(uniqueIdentifier).then(function (value) {
-        var message = value.message;
         try {
-            var decryptedMessage = sjcl.decrypt(decryptionKey, message);
-            console.log("Decrypted Message: ", decryptedMessage);
+            openpgp.message.readArmored(value.message).then(function (message) {
+                openpgp.decrypt({
+                    message: message,
+                    passwords: decryptionKey,
+                    format: 'utf8'
+                }).then(function (decryptedMessage) {
+                    console.log("Decrypted Message: ", decryptedMessage.data);
+                });
+            })
         } catch (e) {
             console.log("Error occurred while decrypting the message");
             process.exit();

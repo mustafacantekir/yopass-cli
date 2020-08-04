@@ -14,15 +14,15 @@ npm install -g yopass-cli
 ```
 
 ## Getting Started 
-If you are managing your own yopass instance, you need to set environment variables for API and UI URLs. If they have the same hostname, exporting 
-only API URL is enough. yopass-cli uses https://yopass.se by default.
+If you are managing your own yopass instance, you need to set the yopass API and UI URLs as environment variables. If they have the same hostname, exporting 
+the API URL will be enough. yopass-cli uses https://yopass.se by default.
 
 ```
 export YOPASS_API_URL="https://api.foo.net"
 export YOPASS_UI_URL="https://ui.foo.net"
 ```
 
-Encrypt your secret using `encrypt` command. You can specify secret message as an argument or pass value from stdin.
+Encrypt your secret using `encrypt` command. You can specify the secret message as an argument or pass the value from stdin.
 
 ```
 yopass-cli encrypt secret
@@ -61,6 +61,7 @@ Options:
   --expiration, -e          Specify expiration time
                                          [choices: "h", "d", "w"] [default: "h"]
   --preserve-clipboard, -p  Preserve clipboard        [boolean] [default: false]
+  --one-time, -o            Specify one-time download  [boolean] [default: true]
 ```
 
 #### Examples
