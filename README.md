@@ -1,5 +1,7 @@
-# yopass-cli 
+# yopass-cli - DEPRECATED
 [![npm version](https://badge.fury.io/js/yopass-cli.svg)](https://badge.fury.io/js/yopass-cli)
+
+This project is deprecated, use the official [yopass-cli](https://github.com/jhaals/yopass#command-line-interface).
 
 Command line interface for [yopass](https://github.com/jhaals/yopass).
 
@@ -76,11 +78,6 @@ yopass-cli encrypt 'foo bar' -p         Encrypt given message and preserve clipb
 ```
 yopass-cli decrypt uniqueIdentifier decryptionKey
 ```
-
-## Next
-
-- Implement test cases
-- Global Error Handling
 
 
 ## License
